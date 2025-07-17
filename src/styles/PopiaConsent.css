@@ -1,0 +1,41 @@
+.popia-container {
+    max-width: 600px;
+    margin: 50px auto;
+    padding: 20px;
+    font-family: Arial, sans-serif;
+  }
+  
+  .popia-text {
+    background-color: #f9f9f9;
+    padding: 15px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+  }
+  
+  form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+  }
+  
+  .proceed-btn {
+    padding: 12px;
+    background-color: #008080;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-size: 16px;
+    cursor: pointer;
+  }
+  
+  .proceed-btn:disabled {
+    background-color: grey;
+    cursor: not-allowed;
+  }
+  
+  @media (max-width: 500px) {
+    .popia-container {
+      margin: 20px;
+    }
+  }
+  
