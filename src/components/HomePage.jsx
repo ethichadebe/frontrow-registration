@@ -66,7 +66,9 @@ const Home = () => {
 
         <section>
           <h2>Appointment Request</h2>
-          <button onClick={() => alert('Redirecting to appointment request form...')}>Book Appointment</button>
+          <Link to="/book-appointment">
+          <button>Book Appointment</button>
+          </Link>
         </section>
 
         <section>
