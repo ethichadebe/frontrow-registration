@@ -10,7 +10,7 @@ const PopiaConsent = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (consent) {
-      navigate('/home'); // Redirect to Create Profile page after consent
+      navigate('/register'); // Redirect to Create Profile page after consent
     }
   };
 
