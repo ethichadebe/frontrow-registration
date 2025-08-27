@@ -1,0 +1,242 @@
+/* Page wrapper (matches Home) */
+.calendar-page {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 40px 20px;
+    font-family: 'Segoe UI', sans-serif;
+    color: #333;
+  }
+  
+  /* Header */
+  .calendar-header {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 16px;
+    justify-content: space-between;
+    margin-bottom: 16px;
+  }
+  
+  .calendar-header h1 {
+    font-size: 2rem;
+    font-weight: 600;
+    color: #222;
+    margin: 0;
+  }
+  
+  /* Top actions (Home-like buttons) */
+  .calendar-actions {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+  
+  .calendar-actions .primary,
+  .calendar-actions .flat,
+  .calendar-actions .outline {
+    border: none;
+    border-radius: 8px;
+    padding: 10px 14px;
+    font-size: 0.95rem;
+    cursor: pointer;
+    transition: background-color 0.2s ease, box-shadow 0.2s ease;
+  }
+  
+  .calendar-actions .primary {
+    background-color: #00796b;
+    color: #fff;
+  }
+  .calendar-actions .primary:hover { background-color: #005f56; }
+  
+  .calendar-actions .flat {
+    background: #eef7f6;
+    color: #00796b;
+  }
+  .calendar-actions .flat:hover { background: #e3f1ef; }
+  
+  .calendar-actions .outline {
+    background: #fff;
+    color: #00796b;
+    border: 1px solid #99c1bc;
+  }
+  .calendar-actions .outline:hover { background: #f6fbfa; }
+  
+  /* Type filter chips */
+  .type-filter.card { margin-bottom: 20px; }
+  .filter-label {
+    color: #00796b;
+    font-weight: 600;
+    margin-bottom: 8px;
+    font-size: 0.95rem;
+  }
+  .chip-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 10px;
+  }
+  .chip {
+    border: 1px solid #99c1bc;
+    background: #fff;
+    color: #00796b;
+    border-radius: 999px;
+    padding: 6px 12px;
+    font-size: 0.9rem;
+    cursor: pointer;
+  }
+  .chip:hover { background: #f2fbfa; }
+  .chip-active {
+    background: #00796b;
+    color: #fff;
+    border-color: #00796b;
+  }
+  
+  /* Legend */
+  .legend {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 8px 16px;
+    margin-top: 4px;
+    font-size: 0.9rem;
+  }
+  .legend .dot {
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    border-radius: 100%;
+    margin-right: 8px;
+    vertical-align: middle;
+  }
+  .legend .psychosocial { background: #00796b; } /* teal */
+  .legend .medical { background: #e57373; }      /* red */
+  .legend .dental { background: #42a5f5; }       /* blue */
+  .legend .visual { background: #ffd54f; }       /* yellow */
+  
+  /* Layout */
+  .calendar-layout {
+    display: grid;
+    grid-template-columns: 320px 1fr;
+    gap: 24px;
+  }
+  .card {
+    background: #fff;
+    border-radius: 12px;
+    padding: 16px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+  }
+  
+  /* Mini calendar */
+  .mini-calendar h2 {
+    font-size: 1.1rem;
+    margin: 0 0 8px;
+    color: #00796b;
+  }
+  .mini-calendar-body {
+    border-radius: 10px;
+    overflow: hidden;
+    border: 1px solid #e7efee;
+    background: #fff;
+    min-height: 280px;
+  }
+  
+  /* Scheduler container */
+  .scheduler-wrap { padding: 0; }
+  .scheduler-container {
+    height: 72vh;
+    min-height: 560px;
+    border-radius: 12px;
+    overflow: hidden;
+  }
+  
+  /* dhtmlx header themed */
+  .dhx_cal_navline {
+    background: #00796b;
+    color: #fff;
+    height: 56px;
+    border: none;
+  }
+  .dhx_cal_prev_button,
+  .dhx_cal_next_button,
+  .dhx_cal_today_button {
+    filter: brightness(0) invert(1);
+    opacity: 0.9;
+  }
+  .dhx_cal_date { color: #fff !important; font-weight: 600; }
+  
+  /* Tabs */
+  .dhx_cal_tab.active {
+    background: #005f56 !important;
+    color: #fff !important;
+    border-radius: 8px 8px 0 0 !important;
+  }
+  .dhx_cal_tab {
+    background: #0f8a7b;
+    color: #e9fffb;
+    border-radius: 8px 8px 0 0;
+    border: none;
+  }
+  
+  /* Grid / scales */
+  .dhx_cal_container, .dhx_cal_data { background: #fff; }
+  .dhx_matrix_scell, .dhx_cal_header, .dhx_scale_bar {
+    background: #f5f7fa !important;
+    color: #444 !important;
+    border-color: #eaeef0 !important;
+  }
+  
+  /* Event colors by type (match legend) */
+  .dhx_cal_event_line.type-psychosocial,
+  .dhx_cal_event.type-psychosocial .dhx_title {
+    background: #00796b !important;
+    border-color: #00796b !important;
+    color: #fff !important;
+  }
+  .dhx_cal_event_line.type-medical,
+  .dhx_cal_event.type-medical .dhx_title {
+    background: #e57373 !important;
+    border-color: #e57373 !important;
+    color: #fff !important;
+  }
+  .dhx_cal_event_line.type-dental,
+  .dhx_cal_event.type-dental .dhx_title {
+    background: #42a5f5 !important;
+    border-color: #42a5f5 !important;
+    color: #fff !important;
+  }
+  .dhx_cal_event_line.type-visual,
+  .dhx_cal_event.type-visual .dhx_title {
+    background: #ffd54f !important;
+    border-color: #ffd54f !important;
+    color: #333 !important;
+  }
+  
+  /* Lightbox (modal) */
+  .dhtmlx_modal_box, .dhtmlx_alert, .dhtmlx_confirm {
+    border-radius: 12px !important;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+  }
+  .dhx_cal_ltitle { color: #00796b; font-weight: 600; }
+  .dhx_cal_lsection { background: #eef7f6 !important; color: #005f56 !important; }
+  
+  /* Tooltip */
+  .tooltip { max-width: 280px; font-size: 0.9rem; line-height: 1.35; }
+  .tooltip .tt-title { font-weight: 600; margin-bottom: 4px; }
+  .tooltip .tt-details { margin-top: 6px; opacity: 0.9; }
+  
+  /* TZ hint chip */
+  .tz-hint {
+    font-weight: 500;
+    font-size: 0.85rem;
+    margin-left: 10px;
+    background: #e3f1ef;
+    color: #00796b;
+    padding: 2px 8px;
+    border-radius: 999px;
+  }
+  
+  /* Mobile */
+  @media (max-width: 960px) {
+    .calendar-layout { grid-template-columns: 1fr; }
+    .scheduler-container { height: 70vh; }
+  }
+  

@@ -61,7 +61,9 @@ const Home = () => {
 
         <section>
           <h2>Health Awareness Calendar</h2>
-          <button onClick={() => alert('Opening health calendar...')}>View Calendar</button>
+          <Link to="/calendar">
+            <button >View Calendar</button>
+            </Link>
         </section>
 
         <section>

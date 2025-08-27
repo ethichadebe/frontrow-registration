@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import PopiaConsent from './components/PopiaConsent';
 import CreateProfile from './components/CreateProfile';
 import HomePage from './components/HomePage';
+import CalendarPage from './components/CalendarPage';
 import Psychosocial from './components/benefits/Psychosocial';
 import Medical from './components/benefits/Medical';
 import Dental from './components/benefits/Dental';
@@ -31,6 +32,9 @@ function App() {
 
         {/*Third Page: Home page Form */}
         <Route path="/home" element={<HomePage />} />
+
+        {/*Third Page: Home page Form */}
+        <Route path="/calendar" element={<CalendarPage />} />
 
         {/*Page: Benefit Guide Pages */}
         <Route path="/benefits/psychosocial" element={<Psychosocial />} />
