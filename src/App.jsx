@@ -16,6 +16,7 @@ import Fitness from './components/resources/Fitness';
 import Nutrition from './components/resources/Nutrition';
 import Teambuilding from './components/resources/Teambuilding';
 import Navbar from './components/Navbar';
+import Appointment from './components/appointment/BookAppointment';
 
 
 // App Component: Handles page navigation using React Router
@@ -50,6 +51,10 @@ function App() {
         <Route path="/resources/fitness" element={<Fitness />} />
         <Route path="/resources/nutrition" element={<Nutrition />} />
         <Route path="/resources/teambuilding" element={<Teambuilding />} />
+
+        {/*Appointment Booking*/}
+        <Route path="/book-appointment" element={<Appointment />} />
+
 
       </Routes>
     </Router>
