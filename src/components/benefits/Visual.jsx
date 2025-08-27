@@ -1,11 +1,12 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import '../../styles/HomePage.css';
 
 const Visual = () => {
+  const navigate = useNavigate();
   return (
     <div className="profile-container">
-      <Link to="/" className="back-button">← Back to Home</Link>
+      <button className="back-button" onClick={() => navigate(-1)}>← Back</button>
       <h1>Visual Benefits</h1>
       <p>Support for eye care, including optometrist visits, eyewear, and screenings.</p>
     </div>

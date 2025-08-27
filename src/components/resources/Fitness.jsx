@@ -1,13 +1,15 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import '../../styles/HomePage.css';
 
-const Fitness = () => (
+const Fitness = () => {
+  const navigate = useNavigate();
+  return(
   <div className="profile-container">
-    <Link to="/" className="back-button">← Back to Home</Link>
+    <button className="back-button" onClick={() => navigate(-1)}>← Back</button>
     <h1>Digital Fitness Subscription</h1>
     <p>Online fitness services and workout subscriptions to stay active.</p>
   </div>
 );
-
+};
 export default Fitness;

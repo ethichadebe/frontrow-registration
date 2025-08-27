@@ -1,13 +1,17 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import '../../styles/HomePage.css';
 
-const Teambuilding = () => (
+const Teambuilding = () => {
+  
+  const navigate = useNavigate();
+  return(
   <div className="profile-container">
-    <Link to="/" className="back-button">← Back to Home</Link>
+    <button className="back-button" onClick={() => navigate(-1)}>← Back</button>
     <h1>Team-Building Activities</h1>
     <p>Ideas and programs that promote team cohesion through wellness.</p>
   </div>
 );
+};
 
 export default Teambuilding;

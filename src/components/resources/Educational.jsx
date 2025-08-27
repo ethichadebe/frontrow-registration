@@ -1,13 +1,15 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import '../../styles/HomePage.css';
 
-const Educational = () => (
+const Educational = () => {
+  const navigate = useNavigate();
+  return(
   <div className="profile-container">
-    <Link to="/" className="back-button">← Back to Home</Link>
+    <button className="back-button" onClick={() => navigate(-1)}>← Back</button>
     <h1>Educational</h1>
     <p>Information and links to educational wellness resources.</p>
   </div>
 );
-
+};
 export default Educational;
