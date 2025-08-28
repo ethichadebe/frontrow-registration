@@ -1,4 +1,4 @@
-/* Page wrapper (matches Home) */
+/* Page wrapper */
 .calendar-page {
     max-width: 1200px;
     margin: 0 auto;
@@ -9,28 +9,42 @@
   
   /* Header */
   .calendar-header {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    gap: 16px;
-    justify-content: space-between;
+    display: block;
     margin-bottom: 16px;
   }
-  
   .calendar-header h1 {
     font-size: 2rem;
     font-weight: 600;
     color: #222;
-    margin: 0;
+    margin: 0 0 12px 0;
   }
   
-  /* Top actions (Home-like buttons) */
+  /* NEW toolbar row: actions + type filter side-by-side */
+  .calendar-toolbar {
+    display: flex;
+    gap: 16px;
+    align-items: stretch;
+    flex-wrap: wrap;
+  }
+  
+  /* Give both boxes a consistent look */
+  .toolbar-box {
+    background: #fff;
+    border-radius: 12px;
+    padding: 12px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+  }
+  
+  /* Actions cluster */
   .calendar-actions {
     display: flex;
     gap: 8px;
     flex-wrap: wrap;
+    align-items: center;
+    flex: 1 1 420px; /* grows and wraps nicely */
   }
   
+  /* Buttons */
   .calendar-actions .primary,
   .calendar-actions .flat,
   .calendar-actions .outline {
@@ -41,19 +55,16 @@
     cursor: pointer;
     transition: background-color 0.2s ease, box-shadow 0.2s ease;
   }
-  
   .calendar-actions .primary {
     background-color: #00796b;
     color: #fff;
   }
   .calendar-actions .primary:hover { background-color: #005f56; }
-  
   .calendar-actions .flat {
     background: #eef7f6;
     color: #00796b;
   }
   .calendar-actions .flat:hover { background: #e3f1ef; }
-  
   .calendar-actions .outline {
     background: #fff;
     color: #00796b;
@@ -61,8 +72,11 @@
   }
   .calendar-actions .outline:hover { background: #f6fbfa; }
   
-  /* Type filter chips */
-  .type-filter.card { margin-bottom: 20px; }
+  /* Type filter */
+  .type-filter.card { 
+    margin-bottom: 0; 
+    flex: 0 1 420px; /* sits beside actions; wraps on small screens */
+  }
   .filter-label {
     color: #00796b;
     font-weight: 600;
@@ -91,14 +105,14 @@
     border-color: #00796b;
   }
   
-  /* Legend */
+  /* Legend (compact for toolbar) */
   .legend {
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 8px 16px;
-    margin-top: 4px;
     font-size: 0.9rem;
   }
+  .legend.compact { margin-top: 4px; }
   .legend .dot {
     display: inline-block;
     width: 10px;
@@ -107,17 +121,19 @@
     margin-right: 8px;
     vertical-align: middle;
   }
-  .legend .psychosocial { background: #00796b; } /* teal */
-  .legend .medical { background: #e57373; }      /* red */
-  .legend .dental { background: #42a5f5; }       /* blue */
-  .legend .visual { background: #ffd54f; }       /* yellow */
+  .legend .psychosocial { background: #00796b; }
+  .legend .medical { background: #e57373; }
+  .legend .dental { background: #42a5f5; }
+  .legend .visual { background: #ffd54f; }
   
-  /* Layout */
+  /* Main layout */
   .calendar-layout {
     display: grid;
     grid-template-columns: 320px 1fr;
     gap: 24px;
+    margin-top: 16px;
   }
+  
   .card {
     background: #fff;
     border-radius: 12px;
@@ -184,7 +200,7 @@
     border-color: #eaeef0 !important;
   }
   
-  /* Event colors by type (match legend) */
+  /* Event colors by type */
   .dhx_cal_event_line.type-psychosocial,
   .dhx_cal_event.type-psychosocial .dhx_title {
     background: #00796b !important;
@@ -210,7 +226,7 @@
     color: #333 !important;
   }
   
-  /* Lightbox (modal) */
+  /* Lightbox */
   .dhtmlx_modal_box, .dhtmlx_alert, .dhtmlx_confirm {
     border-radius: 12px !important;
     box-shadow: 0 10px 30px rgba(0,0,0,0.15);
@@ -234,8 +250,9 @@
     border-radius: 999px;
   }
   
-  /* Mobile */
+  /* Responsive */
   @media (max-width: 960px) {
+    .calendar-toolbar { flex-direction: column; }
     .calendar-layout { grid-template-columns: 1fr; }
     .scheduler-container { height: 70vh; }
   }

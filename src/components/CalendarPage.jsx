@@ -11,13 +11,11 @@ const CalendarPage = () => {
   const [activeType, setActiveType] = useState("All");
 
   useEffect(() => {
-    // Free extensions only
     scheduler.plugins({
       minical: true,
       tooltip: true,
     });
 
-    // Base config
     scheduler.clearAll();
     scheduler.config.xml_date = "%Y-%m-%d %H:%i";
     scheduler.config.first_hour = 7;
@@ -29,7 +27,6 @@ const CalendarPage = () => {
     scheduler.config.start_on_monday = true;
     scheduler.xy.nav_height = 56;
 
-    // Labels & header date (with TZ hint)
     scheduler.locale.labels.section_subject = "Title";
     scheduler.locale.labels.section_location = "Location";
     scheduler.locale.labels.section_type = "Type";
@@ -40,7 +37,7 @@ const CalendarPage = () => {
     scheduler.templates.day_date = (date) =>
       `Schedule • ${scheduler.date.date_to_str("%l, %d %F %Y")(date)} <span class="tz-hint">Africa/Johannesburg</span>`;
 
-    // Lightbox (event popup) with Type dropdown
+    // Lightbox with Type dropdown
     scheduler.config.lightbox.sections = [
       { name: "subject", height: 30, map_to: "text", type: "textarea", focus: true },
       { name: "location", height: 30, map_to: "location", type: "textarea" },
@@ -60,13 +57,11 @@ const CalendarPage = () => {
       { name: "time", height: 72, type: "time", map_to: "auto" },
     ];
 
-    // Event CSS by type
     scheduler.templates.event_class = (_s, _e, ev) => {
       const t = (ev.type || "Psychosocial").toLowerCase();
       return `type-${t}`;
     };
 
-    // Tooltips
     scheduler.templates.tooltip_text = (start, end, ev) => {
       const fmt = scheduler.date.date_to_str("%H:%i");
       return `
@@ -80,19 +75,17 @@ const CalendarPage = () => {
       `;
     };
 
-    // Filtering for day/week/month
-    const applyFilter = () => {
+    // Filtering for day/week/month views
+    const filterNow = () => {
       const fn = (_id, ev) => (activeType === "All" ? true : (ev.type || "Psychosocial") === activeType);
       scheduler.filter_day = fn;
       scheduler.filter_week = fn;
       scheduler.filter_month = fn;
     };
-    applyFilter();
+    filterNow();
 
-    // Init
     scheduler.init(schedulerContainer.current, new Date(), "week");
 
-    // Mini calendar
     scheduler.attachEvent("onTemplatesReady", () => {
       scheduler.renderCalendar({
         container: miniCalendarContainer.current,
@@ -148,7 +141,6 @@ const CalendarPage = () => {
       "json"
     );
 
-    // Cleanup
     return () => scheduler.clearAll();
   }, []); // mount once
 
@@ -161,7 +153,7 @@ const CalendarPage = () => {
     scheduler.updateView();
   }, [activeType]);
 
-  // UI handlers
+  // Handlers
   const makeNewEvent = () => {
     const start = new Date();
     const end = new Date(start.getTime() + 60 * 60 * 1000);
@@ -186,34 +178,38 @@ const CalendarPage = () => {
     <div className="calendar-page">
       <div className="calendar-header">
         <h1>Health Awareness Calendar</h1>
-        <div className="calendar-actions">
-          <button className="primary" onClick={makeNewEvent}>+ New Event</button>
-          <button className="flat" onClick={() => scheduler.setCurrentView(new Date(), "day")}>Day</button>
-          <button className="flat" onClick={() => scheduler.setCurrentView(new Date(), "week")}>Week</button>
-          <button className="flat" onClick={() => scheduler.setCurrentView(new Date(), "month")}>Month</button>
-          <button className="outline" onClick={exportICS} title="Export to ICS">Export (.ics)</button>
-        </div>
-      </div>
 
-      <div className="type-filter card">
-        <div className="filter-label">Filter by Type:</div>
-        <div className="chip-row">
-          {EVENT_TYPES.map((t) => (
-            <button
-              key={t}
-              className={`chip ${activeType === t ? "chip-active" : ""}`}
-              onClick={() => setActiveType(t)}
-              aria-pressed={activeType === t}
-            >
-              {t}
-            </button>
-          ))}
-        </div>
-        <div className="legend">
-          <span><i className="dot psychosocial" /> Psychosocial</span>
-          <span><i className="dot medical" /> Medical</span>
-          <span><i className="dot dental" /> Dental</span>
-          <span><i className="dot visual" /> Visual</span>
+        {/* NEW: toolbar row with actions + type filter side-by-side */}
+        <div className="calendar-toolbar">
+          <div className="calendar-actions toolbar-box">
+            <button className="primary" onClick={makeNewEvent}>+ New Event</button>
+            <button className="flat" onClick={() => scheduler.setCurrentView(new Date(), "day")}>Day</button>
+            <button className="flat" onClick={() => scheduler.setCurrentView(new Date(), "week")}>Week</button>
+            <button className="flat" onClick={() => scheduler.setCurrentView(new Date(), "month")}>Month</button>
+            <button className="outline" onClick={exportICS} title="Export to ICS">Export (.ics)</button>
+          </div>
+
+          <div className="type-filter card toolbar-box">
+            <div className="filter-label">Filter by Type</div>
+            <div className="chip-row">
+              {EVENT_TYPES.map((t) => (
+                <button
+                  key={t}
+                  className={`chip ${activeType === t ? "chip-active" : ""}`}
+                  onClick={() => setActiveType(t)}
+                  aria-pressed={activeType === t}
+                >
+                  {t}
+                </button>
+              ))}
+            </div>
+            <div className="legend compact">
+              <span><i className="dot psychosocial" /> Psychosocial</span>
+              <span><i className="dot medical" /> Medical</span>
+              <span><i className="dot dental" /> Dental</span>
+              <span><i className="dot visual" /> Visual</span>
+            </div>
+          </div>
         </div>
       </div>
 
